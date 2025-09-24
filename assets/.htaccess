@@ -1,0 +1,21 @@
+# Disable rewrite inside assets and ensure correct MIME types
+RewriteEngine Off
+
+# CSS
+AddType text/css .css
+AddType text/css .map
+
+# JavaScript
+AddType application/javascript .js
+
+# Fonts
+AddType application/font-woff2 .woff2
+AddType application/font-woff .woff
+AddType application/x-font-ttf .ttf
+AddType application/vnd.ms-fontobject .eot
+AddType image/svg+xml .svg
+
+# Images & icons
+AddType image/x-icon .ico
+
+
