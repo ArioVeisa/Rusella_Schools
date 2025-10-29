@@ -1,9 +1,9 @@
 <?php
 //konfigurasi server database (Laragon default)
 $host = '127.0.0.1';
-$user = 'root';
-$pass = '';
-$debe = 'u934050785_ujian';
+$user = 'u934050785_Rusella001';
+$pass = 'Rusella@001';
+$debe = 'u934050785_ujianCBT';
 
 
 $koneksi = mysqli_connect($host, $user, $pass, "");
