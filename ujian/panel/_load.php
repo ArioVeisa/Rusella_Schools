@@ -8,19 +8,20 @@ if (isset($_GET['pg'])) {
 	if ($pg == 'waktu') {
 		echo $waktu;
 	} elseif ($pg == 'log') {
-		$logC = 0;
-		echo "<div class='direct-chat-messages' style='height:470px'>";
-		$logQ = mysqli_query($koneksi, "SELECT * FROM log ORDER BY date DESC limit 6");
-		while ($log = mysqli_fetch_array($logQ)) {
-			$logC++;
-			$siswa = mysqli_fetch_array(mysqli_query($koneksi, "SELECT * FROM siswa WHERE id_siswa='$log[id_siswa]'"));
+        $logC = 0;
+        echo "<div class='direct-chat-messages' style='height:470px'>";
+        $logQ = mysqli_query($koneksi, "SELECT * FROM log ORDER BY date DESC limit 6");
+        while ($log = mysqli_fetch_array($logQ)) {
+            $logC++;
+            $siswa = mysqli_fetch_array(mysqli_query($koneksi, "SELECT * FROM siswa WHERE id_siswa='$log[id_siswa]'"));
+            $siswaNama = isset($siswa['nama']) ? $siswa['nama'] : 'Siswa';
 			if ($log['type'] == 'login' || $log['type'] == 'logout') {
 				($log['type'] == 'login') ? $icon = 'fa-sign-in-alt' : $icon = 'fa-sign-out-alt';
 				($log['type'] == 'login') ? $color = 'text-green' : $color = 'text-red';
 				echo "
 						<div class='direct-chat-msg' >
 							<div class='direct-chat-info clearfix'>
-								<span class='direct-chat-name pull-left'>$siswa[nama]</span>
+                                <span class='direct-chat-name pull-left'>" . $siswaNama . "</span>
 								<span class='direct-chat-timestamp pull-right'>" . timeAgo($log['date']) . "</span>
 							</div><!-- /.direct-chat-info -->
 							<span class='direct-chat-img'><img src='../dist/img/avatar5.png' width=45></span><!-- /.direct-chat-img -->
@@ -34,7 +35,7 @@ if (isset($_GET['pg'])) {
 				echo "
 						<div class='direct-chat-msg right'>
 							<div class='direct-chat-info clearfix'>
-								<span class='direct-chat-name pull-right'>$siswa[nama]</span>
+                                <span class='direct-chat-name pull-right'>$siswaNama</span>
 								<span class='direct-chat-timestamp pull-left'>" . timeAgo($log['date']) . "</span>
 							</div><!-- /.direct-chat-info -->
 							<span class='direct-chat-img'><img src='../dist/img/avatar5.png' width=45></span><!-- /.direct-chat-img -->

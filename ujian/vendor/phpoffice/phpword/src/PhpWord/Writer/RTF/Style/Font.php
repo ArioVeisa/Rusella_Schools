@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of PHPWord - A pure PHP library for reading and writing
  * word processing documents.
@@ -11,7 +12,7 @@
  * contributors, visit https://github.com/PHPOffice/PHPWord/contributors.
  *
  * @see         https://github.com/PHPOffice/PHPWord
- * @copyright   2010-2018 PHPWord contributors
+ *
  * @license     http://www.gnu.org/licenses/lgpl.txt LGPL version 3
  */
 
@@ -20,7 +21,7 @@ namespace PhpOffice\PhpWord\Writer\RTF\Style;
 use PhpOffice\PhpWord\Style\Font as FontStyle;
 
 /**
- * RTF font style writer
+ * RTF font style writer.
  *
  * @since 0.11.0
  */
@@ -37,7 +38,7 @@ class Font extends AbstractStyle
     private $colorIndex = 0;
 
     /**
-     * Write style
+     * Write style.
      *
      * @return string
      */
@@ -49,6 +50,7 @@ class Font extends AbstractStyle
         }
 
         $content = '';
+        $content .= $this->getValueIf($style->isRTL(), '\rtlch');
         $content .= '\cf' . $this->colorIndex;
         $content .= '\f' . $this->nameIndex;
 
@@ -68,10 +70,9 @@ class Font extends AbstractStyle
     /**
      * Set font name index.
      *
-     *
      * @param int $value
      */
-    public function setNameIndex($value = 0)
+    public function setNameIndex($value = 0): void
     {
         $this->nameIndex = $value;
     }
@@ -81,7 +82,7 @@ class Font extends AbstractStyle
      *
      * @param int $value
      */
-    public function setColorIndex($value = 0)
+    public function setColorIndex($value = 0): void
     {
         $this->colorIndex = $value;
     }

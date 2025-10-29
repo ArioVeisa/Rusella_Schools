@@ -1,6 +1,6 @@
 <IfModule mod_rewrite.c>
     RewriteEngine On
-    RewriteBase /
+    RewriteBase /Rusella_Schools/ujian/
     
     # Biar index.php bisa diakses normal
     RewriteCond %{REQUEST_FILENAME} !-f

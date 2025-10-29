@@ -1,8 +1,8 @@
 <?php
-//konfigurasi server database
-$host = 'localhost';
-$user = 'u934050785_ujian';
-$pass = '16031994Giri';
+//konfigurasi server database (Laragon default)
+$host = '127.0.0.1';
+$user = 'root';
+$pass = '';
 $debe = 'u934050785_ujian';
 
 

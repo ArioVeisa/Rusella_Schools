@@ -59,6 +59,13 @@ endif;
 	<script src='<?= $homeurl ?>/plugins/datatables/extensions/Select/js/select.bootstrap.min.js'></script>
 </head>
 
+<style>
+    /* Matikan overlay loader dan ikon spinner agar UI tidak tertutup */
+    .loader { display: none !important; }
+    .fa-spin { display: none !important; }
+    #loading-image { display: none !important; }
+</style>
+
 <div class="modal fade" id="modalversidb" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
@@ -390,17 +397,18 @@ endif;
 		</script>
 	<?php } ?>
 	<script>
-		$('.loader').fadeOut('slow');
-		$(function() {
-			$('#textarea').wysihtml5()
-		});
-		var autoRefresh = setInterval(
-			function() {
-				$('#waktu').load('_load.php?pg=waktu');
-				$('#log-list').load('_load.php?pg=log');
-				$('#pengumuman').load('_load.php?pg=pengumuman');
-			}, 1000
-		);
+        $('.loader').fadeOut('slow');
+        $(function() {
+            $('#textarea').wysihtml5()
+        });
+        // Muat pertama kali segera, lalu refresh berkala
+        function refreshWidgets() {
+            $('#waktu').load('_load.php?pg=waktu');
+            $('#log-list').load('_load.php?pg=log');
+            $('#pengumuman').load('_load.php?pg=pengumuman');
+        }
+        refreshWidgets();
+        var autoRefresh = setInterval(refreshWidgets, 5000);
 
 		<?php if ($pg == 'statussiswa') { ?>
 			var autoRefresh = setInterval(
